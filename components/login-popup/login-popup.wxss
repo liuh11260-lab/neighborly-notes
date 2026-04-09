@@ -1,0 +1,234 @@
+/* components/login-popup/login-popup.wxss */
+.popup-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 9999;
+  display: none;
+  transition: background-color 0.3s ease;
+}
+
+.popup-mask.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  border-radius: 48rpx 48rpx 0 0;
+  padding: 24rpx 48rpx 64rpx;
+  padding-bottom: calc(64rpx + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 10000;
+  box-shadow: 0 -10rpx 40rpx rgba(0,0,0,0.1);
+}
+
+.popup-container.show {
+  transform: translateY(0);
+}
+
+.handle-bar {
+  width: 80rpx;
+  height: 8rpx;
+  background-color: rgba(100, 116, 139, 0.2);
+  border-radius: 4rpx;
+  margin: 0 auto 32rpx;
+}
+
+.popup-header {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+
+.popup-title {
+  display: block;
+  color: #1e293b;
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.popup-subtitle {
+  display: block;
+  color: #94a3b8;
+  font-size: 28rpx;
+}
+
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 48rpx;
+}
+
+.avatar-btn {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  margin-bottom: 24rpx;
+  overflow: visible;
+}
+
+.avatar-btn::after {
+  display: none;
+}
+
+.avatar-preview {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: #f8fafc;
+  border: 4rpx solid #fff;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+}
+
+.avatar-edit-icon {
+  position: absolute;
+  right: 0;
+  bottom: 10rpx;
+  width: 52rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  background: #07C160;
+  border: 4rpx solid #fff;
+  border-radius: 50%;
+  font-size: 24rpx;
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(7, 193, 96, 0.3);
+}
+
+.nickname-input-wrap {
+  width: 100%;
+  background-color: #f8fafc;
+  border-radius: 32rpx;
+  padding: 24rpx 32rpx;
+  border: 2rpx solid #f1f5f9;
+}
+
+.nickname-input {
+  width: 100%;
+  text-align: center;
+  color: #1e293b;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+/* Quick Sync Button */
+.btn-quick-sync {
+  width: 100% !important;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: #f0fdf4; /* Light Green */
+  color: #07C160;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 48rpx;
+  margin-bottom: 30rpx;
+  border: 2rpx solid #07C160;
+}
+
+.btn-quick-sync:active {
+  background: #dcfce7;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1rpx;
+  background: #EEE;
+}
+
+.divider-text {
+  font-size: 22rpx;
+  color: #CCC;
+  margin: 0 20rpx;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.btn-login {
+  width: 100% !important;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #07C160;
+  border: none;
+  border-radius: 50rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  box-shadow: 0 8rpx 20rpx rgba(7, 193, 96, 0.2);
+}
+
+.btn-icon {
+  font-size: 36rpx;
+}
+
+.btn-later {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 28rpx;
+  padding: 16rpx;
+}
+
+.tips-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rpx;
+}
+
+.agreement-checkbox {
+  transform: scale(0.7);
+  margin-right: -4rpx;
+}
+
+.tips-text {
+  color: #64748b;
+  font-size: 24rpx;
+}
+
+.tips-link {
+  color: #07C160;
+  font-size: 24rpx;
+}
+
+/* Dark Mode Overrides (Optional based on component property) */
+.popup-container:not(.light-mode) {
+  background-color: #1e2433;
+}
+.popup-container:not(.light-mode) .popup-title { color: #fff; }
+.popup-container:not(.light-mode) .nickname-input-wrap { background-color: rgba(100, 116, 139, 0.2); border-color: rgba(100, 116, 139, 0.1); }
+.popup-container:not(.light-mode) .nickname-input { color: #fff; }
+.popup-container:not(.light-mode) .avatar-preview { background-color: rgba(100, 116, 139, 0.1); }

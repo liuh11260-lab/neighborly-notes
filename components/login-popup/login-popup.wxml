@@ -1,0 +1,50 @@
+<view class="popup-mask {{show ? 'show' : ''}}" bindtap="onMaskTap">
+  <view class="popup-container {{show ? 'show' : ''}} {{darkMode ? '' : 'light-mode'}}" catchtap="stopPropagation">
+    <!-- Handle bar -->
+    <view class="handle-bar"></view>
+
+    <!-- Header -->
+    <view class="popup-header">
+      <text class="popup-title">登录友邻笔记</text>
+      <text class="popup-subtitle">设置头像和昵称，开启邻里分享</text>
+    </view>
+
+    <!-- Avatar & Nickname Input -->
+    <view class="avatar-section">
+      <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image class="avatar-preview" src="{{avatarUrl || '../../images/icons/default_avatar.svg'}}" mode="aspectFill"></image>
+        <view class="avatar-edit-icon">📷</view>
+      </button>
+      <view class="nickname-input-wrap {{darkMode ? '' : 'light-mode'}}">
+        <input
+          type="nickname"
+          class="nickname-input"
+          placeholder="请输入昵称"
+          value="{{nickName}}"
+          bindinput="onNicknameInput"
+          bindblur="onNicknameBlur"
+        />
+      </view>
+    </view>
+
+    <!-- Confirm button -->
+    <view class="button-section">
+      <button class="btn-login" bindtap="onConfirmTap">
+        <text class="btn-icon">✓</text>
+        确认登录
+      </button>
+
+    </view>
+
+    <!-- Tips & Agreement -->
+    <view class="tips-section">
+      <checkbox-group bindchange="onAgreementChange" class="agreement-checkbox">
+        <checkbox value="true" checked="{{agreed}}" color="#fa9d3b" />
+      </checkbox-group>
+      <text class="tips-text">登录即表示您同意</text>
+      <text class="tips-link" bindtap="viewTerms">《用户协议》</text>
+      <text class="tips-text">和</text>
+      <text class="tips-link" bindtap="viewPrivacy">《隐私政策》</text>
+    </view>
+  </view>
+</view>
