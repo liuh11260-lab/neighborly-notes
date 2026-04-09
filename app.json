@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/shelf/shelf",
+    "pages/discover/discover",
+    "pages/record/record",
+    "pages/imprint-panel/imprint-panel",
+    "pages/profile/profile",
+    "pages/place-detail/place-detail",
+    "pages/my-reviews/my-reviews",
+    "pages/share/judgment/judgment",
+    "pages/settings/settings",
+    "pages/visited-places/visited-places",
+    "pages/profile-edit/profile-edit",
+    "pages/themes/index/index",
+    "pages/themes/create/create",
+    "pages/themes/share/share",
+    "pages/admin/dashboard/index",
+    "pages/admin/themes/index",
+    "pages/admin/locations/index",
+    "pages/admin/users/index",
+    "pages/admin/reviews/index",
+    "pages/admin/violations/index",
+    "pages/legal/terms/terms",
+    "pages/legal/privacy/privacy",
+    "pages/nearby-judgments/index"
+  ],
+  "window": {
+    "backgroundColor": "#F7F7F7",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#EDEDED",
+    "navigationBarTitleText": "友邻笔记",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#07C160",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/shelf/shelf",
+        "text": "当下"
+      },
+      {
+        "pagePath": "pages/record/record",
+        "text": "探索"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于在地图上展示你的刻痕位置"
+    }
+  }
+}

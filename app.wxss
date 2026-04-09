@@ -1,0 +1,19 @@
+/**app.wxss**/
+page {
+  background-color: #F7F7F7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Common UI Colors */
+.text-primary { color: #07C160; }
+.bg-primary { background-color: #07C160; }
+.text-grey { color: #999; }
+.bg-white { background-color: #fff; }
