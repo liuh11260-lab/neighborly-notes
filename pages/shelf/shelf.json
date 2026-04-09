@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "友邻笔记",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "login-popup": "/components/login-popup/login-popup"
+  }
+}

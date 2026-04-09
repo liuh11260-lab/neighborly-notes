@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="settings-list">
+
+    <!-- General Section -->
+    <view class="section">
+      <view class="section-title">通用设置</view>
+      <view class="menu-item" bindtap="clearCache">
+        <text class="menu-label">清除本地缓存</text>
+        <view class="menu-right">
+          <text class="cache-size">{{cacheSize}}</text>
+          <text class="menu-arrow">→</text>
+        </view>
+      </view>
+      <view class="menu-item">
+        <text class="menu-label">当前版本</text>
+        <text class="version-text" bindlongpress="onAdminGate">v3.0.0</text>
+      </view>
+    </view>
+
+    <!-- Legal Section -->
+    <view class="section">
+      <view class="section-title">法律合规</view>
+      <view class="menu-item" bindtap="viewTerms">
+        <text class="menu-label">用户协议</text>
+        <text class="menu-arrow">→</text>
+      </view>
+      <view class="menu-item" bindtap="viewPrivacy">
+        <text class="menu-label">隐私政策</text>
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Logout Button -->
+  <view class="logout-section">
+    <button class="btn-logout" bindtap="onLogout">退出当前账号</button>
+  </view>
+
+  <!-- Global Motto -->
+  <view class="app-philosophy">
+    <text class="philosophy-main">邻里笔记不会告诉你该去哪里</text>
+    <text class="philosophy-sub">它只记录你和他人如何判断</text>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- Judgment Card Overlay -->
+  <view class="judgment-card {{judgment.theme}}">
+    <view class="header">
+      <text class="title">{{judgment.title}}</text>
+    </view>
+    
+    <view class="stats">
+      <text class="subtitle">{{judgment.subtitle}}</text>
+    </view>
+    
+    <view class="meta">
+      <text class="meta-text">{{judgment.statsSummary}}</text>
+      <text class="distance" wx:if="{{distance}}"> · 距你 {{distance}}</text>
+    </view>
+  </view>
+
+  <!-- Content Preview (Simple List) -->
+  <view class="evidence-list">
+    <block wx:for="{{reviews}}" wx:key="id">
+      <view class="evidence-item">
+        <view class="user-info">
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <text class="user-name">{{item.userName}}</text>
+          <text class="rating-tag {{item.judgment === 'recommend' || item.rating > 0 ? 'rec' : 'avoid'}}">
+            {{item.judgment === 'recommend' || item.rating > 0 ? '推荐' : (item.judgment === 'avoid' ? '避雷' : (item.rating > 0 ? '推荐' : '避雷'))}}
+          </text>
+        </view>
+        <text class="content">{{item.comment || item.text}}</text>
+        <view class="item-footer">
+          <text class="time">{{item.timeFormatted}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- Map Preview (Location Context) -->
+  <map 
+    id="placeMap" 
+    class="mini-map"
+    latitude="{{place.latitude}}" 
+    longitude="{{place.longitude}}"
+    markers="{{markers}}"
+    scale="16"
+  ></map>
+
+  <view class="action-area">
+    <button class="btn-main" bindtap="viewInMap">在地图中查看</button>
+  </view>
+</view>

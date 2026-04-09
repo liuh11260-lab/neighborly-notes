@@ -1,0 +1,110 @@
+<view class="container">
+  <scroll-view class="profile-scroll" scroll-y>
+    <!-- User Card -->
+    <view class="user-section">
+      <view class="avatar-wrapper">
+        <image class="user-avatar" src="{{userInfo.avatarUrl || '../../images/icons/default_avatar.svg'}}" mode="aspectFill" />
+      </view>
+      <view class="user-main">
+        <block wx:if="{{logged}}">
+          <text class="user-nickname">{{userInfo.nickName}}</text>
+          <text class="user-id">邻里 ID: {{systemId}}</text>
+        </block>
+        <block wx:else>
+          <button class="login-btn" bindtap="login">点击登录</button>
+        </block>
+      </view>
+      <view class="edit-btn" wx:if="{{logged}}" bindtap="editProfile">
+        <image src="../../images/icons/edit.svg" class="edit-icon" />
+      </view>
+    </view>
+
+    <!-- Stats Section -->
+    <view class="stats-section">
+      <view class="stat-item" bindtap="goToMyReviews">
+        <text class="stat-val">{{stats.notes}}</text>
+        <text class="stat-label">邻里笔记</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-divider"></view>
+      <!-- Placeholder for Visited Places -->
+      <view class="stat-item disabled">
+        <text class="stat-val" style="color: #DDD;">--</text>
+        <text class="stat-label">已访地点</text>
+      </view>
+    </view>
+
+    <!-- Recent Activity -->
+    <view class="activity-section" wx:if="{{logged}}">
+      <view class="section-header">
+        <text class="section-title">近期发布</text>
+        <view class="more-link" bindtap="goToMyReviews">
+          <text>全部</text>
+          <text class="more-arrow">→</text>
+        </view>
+      </view>
+      
+      <view class="review-grid">
+        <view 
+          wx:for="{{recentReviews}}" 
+          wx:key="id" 
+          class="place-card"
+          bindtap="goToPlaceDetail"
+          data-id="{{item.placeId}}"
+        >
+          <view class="place-info">
+            <view class="place-header">
+              <text class="place-title">{{item.locationName}}</text>
+              <text class="place-meta">{{item.timeLabel}}</text>
+            </view>
+            <text class="place-desc">{{item.comment}}</text>
+            <view class="place-footer">
+              <view class="judgment-badge {{item.judgment}}" wx:if="{{item.judgment === 'recommend'}}">
+                <text>✓ 适合</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Menu Section -->
+    <view class="menu-section">
+      <button class="menu-item-btn" open-type="share">
+        <view class="menu-item-content">
+          <text class="menu-icon green">📤</text>
+          <text class="menu-label">分享给朋友</text>
+          <text class="menu-arrow">→</text>
+        </view>
+      </button>
+      <view class="menu-item" bindtap="goToThemes">
+        <text class="menu-icon gold">📂</text>
+        <text class="menu-label">我的整理</text>
+        <view class="badge" wx:if="{{stats.themes > 0}}">{{stats.themes}}</view>
+        <text class="menu-arrow">→</text>
+      </view>
+      <view class="menu-item" bindtap="contactSupport">
+        <text class="menu-icon orange">❓</text>
+        <text class="menu-label">帮助与反馈</text>
+        <text class="menu-arrow">→</text>
+      </view>
+      <view class="menu-item" bindtap="viewAbout">
+        <text class="menu-icon blue">ℹ️</text>
+        <text class="menu-label">关于应用</text>
+        <text class="menu-arrow">→</text>
+      </view>
+      <view class="menu-item" bindtap="goToSettings">
+        <text class="menu-icon gray">⚙️</text>
+        <text class="menu-label">设置</text>
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Login Popup Component -->
+  <login-popup 
+    show="{{showLoginPopup}}" 
+    bind:close="onCloseLoginPopup" 
+    bind:success="onLoginSuccess" 
+  />
+</view>

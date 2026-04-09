@@ -1,0 +1,115 @@
+page {
+  background: #F7F7F7;
+}
+
+.container {
+  padding: 40rpx;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 60rpx;
+  padding: 0 10rpx;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 12rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.action-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.action-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+}
+
+.action-card:active {
+  transform: scale(0.98);
+  background: #FAFAFA;
+}
+
+.action-card.primary {
+  padding: 50rpx 30rpx; /* Bigger touch area */
+  border: 4rpx solid #F0F0F0; /* Subtle highlight */
+}
+
+.icon-circle {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: #F0F9EB; /* Green tint */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30rpx;
+}
+
+.icon-circle.gray {
+  width: 80rpx;
+  height: 80rpx;
+  background: #F5F5F5;
+}
+
+.action-icon {
+  width: 50%;
+  height: 50%;
+}
+
+.action-content {
+  flex: 1;
+}
+
+.action-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.action-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.arrow-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #CCC;
+}
+
+.footer-tips {
+  text-align: center;
+  padding: 60rpx 0 20rpx;
+}
+
+.footer-tips text {
+  font-size: 24rpx;
+  color: #BBB;
+  line-height: 1.6;
+}

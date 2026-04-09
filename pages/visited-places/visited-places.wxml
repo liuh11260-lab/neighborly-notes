@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="search-container">
+    <view class="search-bar">
+      <icon type="search" size="16" color="#999" />
+      <input 
+        class="search-input" 
+        placeholder="搜索地点..." 
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+      />
+      <icon wx:if="{{searchText}}" type="clear" size="18" color="#CCC" bindtap="clearSearch" />
+    </view>
+  </view>
+
+  <scroll-view class="place-scroll" scroll-y>
+    <view class="place-grid">
+      <view 
+        wx:for="{{filteredPlaces}}" 
+        wx:key="name" 
+        class="place-card"
+        bindtap="goToPlaceDetail"
+        data-id="{{item.placeId}}"
+      >
+        <view class="place-icon">{{item.typeIcon}}</view>
+        <view class="place-info">
+          <text class="place-title">{{item.name}}</text>
+          <text class="place-meta">{{item.count}} 条记录</text>
+        </view>
+        <text class="arrow">→</text>
+      </view>
+    </view>
+
+    <view wx:if="{{filteredPlaces.length === 0}}" class="empty-state">
+      <image src="../../images/icons/empty.svg" class="empty-icon" />
+      <text>{{searchText ? '没有搜索到相关地点' : '记录你的邻里点滴吧'}}</text>
+    </view>
+  </scroll-view>
+</view>

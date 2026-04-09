@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header">
+    <text class="title">主动探索</text>
+    <text class="subtitle">搜索地图上的真实地点，在此刻确立你的判断</text>
+  </view>
+
+  <view class="action-list">
+    <!-- Primary Action: Search -->
+    <view class="action-card primary" bindtap="chooseLocation">
+      <view class="icon-circle">
+        <image class="action-icon" src="../../images/icons/map_color.svg" mode="aspectFit" />
+      </view>
+      <view class="action-content">
+        <text class="action-title">搜索地点</text>
+        <text class="action-desc">打开地图，定位并评价任何真实空间</text>
+      </view>
+      <view class="arrow-btn">→</view>
+    </view>
+
+    <!-- Secondary: Themes -->
+    <view class="action-card secondary" bindtap="goToMyThemes">
+      <view class="icon-circle gray">
+        <image class="action-icon" src="../../images/icons/list_icon.svg" mode="aspectFit" />
+      </view>
+      <view class="action-content">
+        <text class="action-title">我的整理</text>
+        <text class="action-desc">管理你创建的地点合集</text>
+      </view>
+      <view class="arrow-btn">→</view>
+    </view>
+  </view>
+
+  <view class="footer-tips">
+    <text>这里的每一个判断\n都是你个人地图的基石</text>
+  </view>
+
+  <login-popup 
+    show="{{showLoginPopup}}" 
+    bind:close="onCloseLoginPopup"
+    bind:success="onLoginSuccess"
+  />
+</view>

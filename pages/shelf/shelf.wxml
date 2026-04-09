@@ -1,0 +1,91 @@
+<view class="container">
+  
+  <!-- 1. LOCATING -->
+  <view wx:if="{{homeState === 'LOCATING'}}" class="loading-container">
+    <text>正在定位...</text>
+  </view>
+
+  <!-- 2. NO_ANCHOR -->
+  <view wx:elif="{{homeState === 'NO_ANCHOR'}}" class="loading-container">
+    <text>这里还未形成空间</text>
+  </view>
+
+  <!-- 3. WORLD_READY & 4. WORLD_EMPTY -->
+  <block wx:elif="{{homeState === 'WORLD_READY' || homeState === 'WORLD_EMPTY'}}">
+    <!-- Header: Anchor Context (World Part) -->
+    <view class="header">
+      <view class="subtitle">你现在位于</view>
+      <view class="title">{{anchor.name || '未知区域'}}</view>
+      <view class="meta">{{anchor.category || ''}}</view>
+    </view>
+
+    <view class="world-content">
+      <!-- WORLD_EMPTY Specific View -->
+      <view wx:if="{{homeState === 'WORLD_EMPTY'}}" class="empty-world-view">
+        <text>这个地方暂时没有可推荐内容</text>
+      </view>
+
+      <!-- WORLD_READY Specific View (The Shelf) -->
+      <scroll-view wx:else scroll-y class="shelf-scroll" enable-flex>
+        <view class="shelf-content">
+          <!-- Food Section -->
+          <view class="shelf-section" wx:if="{{shelfGroups.food.length > 0}}">
+            <view class="section-header">
+              <text>🍜 美食</text>
+              <view class="rotate-btn" bindtap="onRotateCategory" data-type="food">🔄 换一批</view>
+            </view>
+            <scroll-view scroll-x class="books-row" enable-flex>
+              <view class="books-container">
+                <block wx:for="{{shelfGroups.food}}" wx:key="id">
+                  <view class="book-card-mini layer-Food {{item.isRecommended ? 'is-recommended' : ''}}" bindtap="onBookTap" data-id="{{item.id}}">
+                    <view class="recommend-badge" wx:if="{{item.isRecommended}}">✓</view>
+                    <view class="book-title">{{item.displayName}}</view>
+                    <view class="book-sub">{{item.subtitle || '友邻推荐'}}</view>
+                  </view>
+                </block>
+              </view>
+            </scroll-view>
+          </view>
+
+          <!-- Leisure Section -->
+          <view class="shelf-section" wx:if="{{shelfGroups.leisure.length > 0}}">
+            <view class="section-header">
+              <text>🎮 娱乐休闲</text>
+              <view class="rotate-btn" bindtap="onRotateCategory" data-type="leisure">🔄 换一批</view>
+            </view>
+            <scroll-view scroll-x class="books-row" enable-flex>
+              <view class="books-container">
+                <block wx:for="{{shelfGroups.leisure}}" wx:key="id">
+                  <view class="book-card-mini layer-Leisure {{item.isRecommended ? 'is-recommended' : ''}}" bindtap="onBookTap" data-id="{{item.id}}">
+                    <view class="recommend-badge" wx:if="{{item.isRecommended}}">✓</view>
+                    <view class="book-title">{{item.displayName}}</view>
+                    <view class="book-sub">{{item.subtitle || '友邻推荐'}}</view>
+                  </view>
+                </block>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- Add Action (Always available in a World) -->
+      <view class="add-card" bindtap="onAddBtnTap">
+        <view class="plus-icon">+</view>
+        <view class="add-text">在这个地方，还能做什么？</view>
+      </view>
+      <view class="footer-spacer"></view>
+    </view>
+  </block>
+
+  <!-- 5. ERROR -->
+  <view wx:elif="{{homeState === 'ERROR'}}" class="loading-container">
+    <text>系统状态异常</text>
+    <button size="mini" bindtap="initLocation">点击重试</button>
+  </view>
+
+  <view wx:else class="loading-container">
+    <text>系统解析错误</text>
+  </view>
+  
+  <login-popup show="{{showLogin}}" bind:close="closeLogin" bind:success="onLoginSuccess" />
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "主动探索",
+  "usingComponents": {
+    "login-popup": "../../components/login-popup/login-popup"
+  }
+}

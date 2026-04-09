@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="header">
+    <view class="title-group">
+      <text class="title">我的整理</text>
+      <text class="subtitle">属于你的地点灵感集</text>
+    </view>
+    <view class="create-btn" bindtap="goToCreate">
+      <text class="btn-icon">+</text>
+      <text>新建主题</text>
+    </view>
+  </view>
+
+  <scroll-view class="theme-list" scroll-y enable-flex>
+    <view wx:if="{{themes.length === 0}}" class="empty-state">
+      <image src="/images/icons/empty.svg" class="empty-icon" />
+      <text class="empty-text">还没有创建过主题哦</text>
+      <button class="empty-btn" bindtap="goToCreate">立即创建</button>
+    </view>
+
+    <view 
+      wx:for="{{themes}}" 
+      wx:key="_id" 
+      class="theme-card"
+      bindtap="goToShare"
+      data-id="{{item._id}}"
+    >
+      <view class="theme-info">
+        <text class="theme-title">{{item.title}}</text>
+        <text class="theme-desc">{{item.description || '无说明'}}</text>
+        <view class="theme-meta">
+          <text class="count-tag">{{item.locationIds.length}} 个地点</text>
+          <text class="time-label">{{item.timeLabel}}</text>
+        </view>
+      </view>
+      <view class="theme-actions">
+        <view class="action-btn share" catchtap="onShareTheme" data-theme="{{item}}">
+          <text>分享</text>
+        </view>
+        <view class="action-btn delete" catchtap="onDeleteTheme" data-id="{{item._id}}" data-title="{{item.title}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

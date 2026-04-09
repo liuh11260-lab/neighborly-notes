@@ -1,0 +1,54 @@
+<view class="container" user-select="true">
+  <view class="header">
+    <text class="title">友邻笔记用户服务协议</text>
+    <text class="update-date">更新日期：2026年1月15日</text>
+    <text class="effective-date">生效日期：2026年1月15日</text>
+  </view>
+
+  <view class="content">
+    <view class="section">
+      <text class="section-title">一、服务协议的确认与接纳</text>
+      <text class="section-content">欢迎使用"友邻笔记"微信小程序（以下简称"本小程序"）。本小程序由合肥市蜀山区新骅邦百货商行（以下简称"我们"）运营和管理。在使用本小程序服务之前，请您仔细阅读并充分理解本协议的全部内容。如果您不同意本协议的任何条款，请勿使用本小程序。您使用本小程序即表示您已阅读、理解并同意接受本协议的约束。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">二、服务内容</text>
+      <text class="section-content">1. 本小程序为用户提供基于地理位置的邻里信息记录与分享服务，包括但不限于：发布和浏览地点评价、分享邻里笔记、参与主题互动等功能。\n\n2. 我们保留随时变更、中断或终止部分或全部服务的权利，无需事先通知用户。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">三、用户行为规范</text>
+      <text class="section-content">1. 用户在使用本小程序时，应遵守中华人民共和国相关法律法规。\n\n2. 用户不得利用本小程序发布以下内容：\n  - 违反宪法或法律法规规定的内容；\n  - 危害国家安全、泄露国家秘密、颠覆国家政权的内容；\n  - 煽动民族仇恨、民族歧视，破坏民族团结的内容；\n  - 散布谣言，扰乱社会秩序，破坏社会稳定的内容；\n  - 侮辱或者诽谤他人的内容；\n  - 含有淫秽、色情、赌博、暴力、恐怖或教唆犯罪的内容；\n  - 侵害他人名誉、隐私、知识产权和其他合法权益的内容；\n  - 其他违反法律法规及公序良俗的内容。\n\n3. 用户对其发布的内容承担全部法律责任。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">四、知识产权</text>
+      <text class="section-content">1. 本小程序的所有文字、图片、音频、视频、软件、程序及其他内容的知识产权均归我们所有或我们已获得合法授权。\n\n2. 用户在本小程序发布的原创内容，其知识产权归用户所有。但用户授权我们在本小程序平台内免费使用、展示、传播该内容。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">五、免责声明</text>
+      <text class="section-content">1. 用户发布的内容代表其个人观点，不代表本小程序的立场。\n\n2. 我们不对用户发布内容的真实性、准确性、完整性作任何保证。\n\n3. 因不可抗力、计算机病毒、黑客攻击、系统故障等因素导致的服务中断或数据丢失，我们不承担责任。\n\n4. 用户因使用本小程序而产生的任何争议、损失，我们不承担任何责任。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">六、账号管理</text>
+      <text class="section-content">1. 用户应妥善保管自己的账号信息，因账号保管不当造成的损失由用户自行承担。\n\n2. 如发现账号存在安全问题，用户应立即通知我们。\n\n3. 我们有权在用户违反本协议时，暂停或终止其账号使用权限。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">七、协议的修订</text>
+      <text class="section-content">我们保留随时修订本协议的权利。修订后的协议将在本小程序内公布，自公布之日起生效。用户继续使用本小程序即视为接受修订后的协议。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">八、法律适用与争议解决</text>
+      <text class="section-content">本协议的订立、执行和解释均适用中华人民共和国法律。因本协议产生的任何争议，双方应协商解决；协商不成的，任何一方均可向我们所在地有管辖权的人民法院提起诉讼。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">九、联系我们</text>
+      <text class="section-content">如您对本协议有任何疑问，请通过以下方式联系我们：\n\n运营主体：合肥市蜀山区新骅邦百货商行\n联系方式：请通过小程序内的反馈功能与我们联系</text>
+    </view>
+  </view>
+</view>

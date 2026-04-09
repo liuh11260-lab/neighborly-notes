@@ -1,0 +1,80 @@
+<view class="admin-page">
+  <view class="admin-header">
+    <text class="header-title">主题管理</text>
+    <text class="header-status">管理系统中所有的地点集合</text>
+  </view>
+
+  <view class="search-section">
+    <view class="search-bar">
+      <icon type="search" size="14" color="#999" />
+      <input 
+        class="search-input" 
+        placeholder="搜索主题标题或ID" 
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+
+    <view class="filter-row-container">
+      <view class="filter-row">
+        <view 
+          wx:for="{{['全部', '正常', '已冻结']}}" wx:key="*this"
+          class="filter-tag {{currentStatusFilter === item ? 'active' : ''}}"
+          bindtap="onStatusFilterChange"
+          data-val="{{item}}"
+        >{{item}}</view>
+      </view>
+
+      <view class="time-filter-section">
+        <picker mode="date" value="{{dateFilter === '全部' ? '' : dateFilter}}" bindchange="onDateChange">
+          <view class="time-picker-btn {{dateFilter !== '全部' ? 'active' : ''}}">
+            <text>{{dateFilter === '全部' ? '选择时间' : dateFilter}}</text>
+            <icon type="waiting" size="12" color="{{dateFilter !== '全部' ? '#1976D2' : '#999'}}" />
+          </view>
+        </picker>
+        <view wx:if="{{dateFilter !== '全部'}}" class="clear-time-btn" bindtap="clearDateFilter">×</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="data-list">
+    <view wx:for="{{filteredThemes}}" wx:key="_id" class="data-card {{item.status === 'frozen' ? 'frozen' : ''}}">
+      <view class="card-main">
+        <view class="theme-info">
+          <view class="theme-header">
+            <text class="theme-title">{{item.title}}</text>
+            <view class="theme-tags">
+              <text class="tag-type {{item.type}}">{{item.type || 'Personal'}}</text>
+              <text class="tag-status {{item.status || 'active'}}">{{item.status === 'frozen' ? '已冻结' : '正常'}}</text>
+            </view>
+          </view>
+          
+          <text class="theme-id">ID: {{item._id}}</text>
+          
+          <view class="theme-footer" bindtap="jumpToFrontend" data-id="{{item._id}}">
+            <text class="theme-time">创建时间: {{item.createTimeText}}</text>
+            <text class="jump-label">查看前端分享页 ></text>
+          </view>
+        </view>
+      </view>
+
+      <view class="card-actions">
+        <button 
+          class="action-btn small {{item.status === 'frozen' ? 'active' : 'danger'}}" 
+          bindtap="toggleFreeze" 
+          data-id="{{item._id}}" 
+          data-status="{{item.status}}"
+        >
+          {{item.status === 'frozen' ? '解除冻结' : '冻结主题'}}
+        </button>
+        <button class="action-btn small secondary" bindtap="viewLocations" data-id="{{item._id}}">
+           查看绑定 ({{item.locationCount}})
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{filteredThemes.length === 0}}" class="empty-state">
+    <text>暂无主题数据</text>
+  </view>
+</view>

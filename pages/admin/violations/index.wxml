@@ -1,0 +1,84 @@
+<view class="violations-container">
+  <!-- 统计概览 -->
+  <view class="stats-header">
+    <view class="stat-item">
+      <text class="stat-value">{{totalCount}}</text>
+      <text class="stat-label">总违规</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value risky">{{riskyCount}}</text>
+      <text class="stat-label">确定违规</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value review">{{reviewCount}}</text>
+      <text class="stat-label">待人工审</text>
+    </view>
+  </view>
+
+  <!-- 筛选器 -->
+  <view class="filter-bar">
+    <view class="filter-row">
+      <text class="filter-label">处理状态:</text>
+      <view class="filter-tabs">
+        <text class="tab {{statusFilter === '全部' ? 'active' : ''}}" 
+              bindtap="onStatusFilterChange" data-val="全部">全部</text>
+        <text class="tab {{statusFilter === '未处理' ? 'active' : ''}}" 
+              bindtap="onStatusFilterChange" data-val="未处理">未处理</text>
+        <text class="tab {{statusFilter === '已处理' ? 'active' : ''}}" 
+              bindtap="onStatusFilterChange" data-val="已处理">已处理</text>
+      </view>
+    </view>
+
+    <view class="filter-row">
+      <text class="filter-label">来源:</text>
+      <view class="filter-tabs">
+        <text class="tab {{sourceFilter === '全部' ? 'active' : ''}}" 
+              bindtap="onSourceFilterChange" data-val="全部">全部</text>
+        <text class="tab {{sourceFilter === 'review-form' ? 'active' : ''}}" 
+              bindtap="onSourceFilterChange" data-val="review-form">发布评价</text>
+        <text class="tab {{sourceFilter === 'theme-create' ? 'active' : ''}}" 
+              bindtap="onSourceFilterChange" data-val="theme-create">创建主题</text>
+      </view>
+    </view>
+
+    <view class="filter-row">
+      <text class="filter-label">日期:</text>
+      <picker mode="date" value="{{dateFilter}}" bindchange="onDateChange">
+        <view class="date-picker">
+          <text>{{dateFilter === '全部' ? '选择日期' : dateFilter}}</text>
+        </view>
+      </picker>
+      <text class="clear-btn" wx:if="{{dateFilter !== '全部'}}" bindtap="clearDateFilter">清除</text>
+    </view>
+  </view>
+
+  <!-- 违规列表 -->
+  <view class="violations-list">
+    <view class="violation-item" wx:for="{{filteredViolations}}" wx:key="_id">
+      <view class="violation-header">
+        <view class="suggest-badge {{item.suggestClass}}">{{item.suggestText}}</view>
+        <text class="source-tag">{{item.sourceText}}</text>
+        <text class="time">{{item.createTimeText}}</text>
+      </view>
+
+      <view class="violation-content">
+        <text class="content-text">{{item.content}}</text>
+        <text class="copy-btn" bindtap="copyContent" data-content="{{item.content}}">复制</text>
+      </view>
+
+      <view class="violation-footer">
+        <text class="user-openid">用户: {{item.openid.substring(0, 16)}}...</text>
+        <button class="handle-btn {{item.handled ? 'handled' : ''}}" 
+                bindtap="markAsHandled" 
+                data-id="{{item._id}}" 
+                data-handled="{{item.handled}}">
+          {{item.handled ? '标记未处理' : '标记已处理'}}
+        </button>
+      </view>
+    </view>
+
+    <view class="empty" wx:if="{{filteredViolations.length === 0}}">
+      <text>暂无违规记录</text>
+    </view>
+  </view>
+</view>

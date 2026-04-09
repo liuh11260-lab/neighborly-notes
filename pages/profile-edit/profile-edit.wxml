@@ -1,0 +1,46 @@
+<view class="page">
+
+  <!-- 顶部头像区 -->
+  <view class="hero">
+    <button
+      class="avatar-button"
+      open-type="chooseAvatar"
+      bindchooseavatar="onChooseAvatar"
+    >
+      <image
+        class="avatar-image"
+        src="{{avatarUrl || '../../images/icons/default_avatar.svg'}}"
+        mode="aspectFill"
+      />
+      <view class="avatar-mask">
+        <text class="mask-text">更换头像</text>
+      </view>
+    </button>
+  </view>
+
+  <!-- 表单区 -->
+  <view class="form">
+    <view class="field">
+      <text class="field-label">昵称</text>
+      <input
+        class="field-input"
+        type="nickname"
+        placeholder="请输入昵称"
+        value="{{nickName}}"
+        bindinput="onNicknameInput"
+      />
+    </view>
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="footer">
+    <button
+      class="save-btn {{canSave ? 'active' : ''}}"
+      bindtap="onSave"
+      disabled="{{!canSave}}"
+    >
+      保存
+    </button>
+  </view>
+
+</view>

@@ -1,0 +1,44 @@
+<view class="container safe-area-bottom">
+  <!-- Identity Header -->
+  <view class="identity-header">
+    <text class="page-title">我的邻里笔记</text>
+    <text class="page-subtitle">你已经为 {{stats.count}} 个地点留下了判断</text>
+  </view>
+
+  <!-- Notes List -->
+  <scroll-view scroll-y class="notes-list" bindscrolltolower="onReachBottom" enable-flex>
+    <block wx:for="{{notes}}" wx:key="_id">
+      <view class="note-card" bindtap="goToDetail" data-id="{{item.anchorId}}" data-title="{{item.title}}">
+        <!-- Main Row: Title & Time -->
+        <view class="card-header">
+           <text class="note-title">{{item.title}}</text>
+           <text class="note-time">{{item.timeLabel}}</text>
+        </view>
+        
+        <!-- Address Row -->
+        <view class="card-meta">
+           <text class="note-address">{{item.address}}</text>
+        </view>
+        
+        <!-- Judgment Row -->
+        <view class="judgment-row">
+            <view class="card-judgment {{item.styleClass}}">
+              <text class="judgment-icon">{{item.judgmentIcon}}</text>
+              <text class="judgment-label">我的判断：{{item.judgmentLabel}}</text>
+            </view>
+            <view class="modify-btn">修改</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- Loading/Empty States -->
+    <view wx:if="{{isLoading}}" class="loading-state">加载中...</view>
+    <view wx:if="{{!isLoading && notes.length === 0}}" class="empty-state">
+      <text class="empty-title">还没有笔记</text>
+      <text class="empty-sub">去探索附近并留下你的第一条判断吧</text>
+    </view>
+    <view wx:if="{{!hasMore && notes.length > 0}}" class="end-state">
+      <text>- 到底了 -</text>
+    </view>
+  </scroll-view>
+</view>

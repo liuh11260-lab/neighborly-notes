@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "留下刻痕",
+  "usingComponents": {
+    "login-popup": "/components/login-popup/login-popup"
+  }
+}

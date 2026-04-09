@@ -1,0 +1,53 @@
+<view class="container" user-select="true">
+  <view class="header">
+    <text class="title">友邻笔记隐私政策</text>
+    <text class="update-date">更新日期：2026年1月15日</text>
+    <text class="effective-date">生效日期：2026年1月15日</text>
+  </view>
+
+  <view class="content">
+    <view class="intro">
+      <text class="intro-text">合肥市蜀山区新骅邦百货商行（以下简称"我们"）非常重视用户的隐私保护。本隐私政策旨在向您说明我们如何收集、使用、存储和保护您的个人信息。请您在使用"友邻笔记"微信小程序（以下简称"本小程序"）前，仔细阅读并理解本隐私政策。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">一、我们收集的信息</text>
+      <text class="section-content">为向您提供服务，我们可能收集以下信息：\n\n1. 账号信息\n  - 微信头像和昵称（用于展示用户身份）\n  - 微信OpenID（用于识别用户身份）\n\n2. 位置信息\n  - 您的地理位置信息（用于展示附近笔记、发布位置相关内容）\n  - 您选择标记的地点信息\n\n3. 用户生成内容\n  - 您发布的评价、笔记文字\n  - 您上传的图片\n  - 您创建的主题内容\n\n4. 设备信息\n  - 设备型号、操作系统版本（用于优化服务体验）\n\n5. 日志信息\n  - 访问时间、操作记录（用于改进服务质量）</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">二、我们如何使用您的信息</text>
+      <text class="section-content">我们收集的信息将用于以下目的：\n\n1. 提供核心服务功能\n  - 展示您发布的笔记内容\n  - 向您展示附近其他用户的笔记\n  - 支持地点评价和主题互动功能\n\n2. 账号管理\n  - 识别和管理您的用户身份\n  - 保障您的账号安全\n\n3. 服务优化\n  - 分析使用数据以改进服务\n  - 修复技术问题\n\n4. 安全保障\n  - 识别和防范安全风险\n  - 处理违规内容举报</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">三、信息的存储与保护</text>
+      <text class="section-content">1. 存储位置\n  - 您的信息存储在微信云开发平台的服务器上，服务器位于中华人民共和国境内。\n\n2. 存储期限\n  - 我们将在为您提供服务所需的期限内保存您的信息。\n  - 账号注销后，我们将在合理期限内删除您的个人信息。\n\n3. 安全措施\n  - 我们采用业界标准的安全措施保护您的信息安全。\n  - 我们对可能接触到您信息的员工进行安全意识培训。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">四、信息的共享与披露</text>
+      <text class="section-content">1. 我们不会向第三方出售您的个人信息。\n\n2. 以下情况下，我们可能共享或披露您的信息：\n  - 获得您明确同意的情况下；\n  - 根据法律法规要求或政府机关的强制性要求；\n  - 为维护我们的合法权益而必须提供的情况；\n  - 与关联公司共享（我们会要求其遵守本隐私政策）。\n\n3. 您公开发布的笔记内容将对其他用户可见。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">五、您的权利</text>
+      <text class="section-content">您享有以下权利：\n\n1. 访问权\n  - 您可以随时查看您发布的内容和个人资料。\n\n2. 更正权\n  - 您可以随时修改您的个人资料和发布内容。\n\n3. 删除权\n  - 您可以随时删除您发布的笔记内容。\n  - 您可以通过清除缓存删除本地存储的信息。\n\n4. 撤回同意权\n  - 您可以随时撤回对位置信息等授权的同意。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">六、未成年人保护</text>
+      <text class="section-content">1. 如果您是未满18周岁的未成年人，请在监护人的指导下阅读本隐私政策并使用我们的服务。\n\n2. 我们不会主动收集未成年人的个人信息。如果发现我们在未知情况下收集了未成年人的个人信息，我们会及时删除。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">七、隐私政策的更新</text>
+      <text class="section-content">我们可能适时修订本隐私政策。当发生重大变更时，我们会在小程序内发布更新通知。您继续使用我们的服务即表示您同意接受修订后的隐私政策。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">八、联系我们</text>
+      <text class="section-content">如您对本隐私政策有任何疑问、意见或建议，或希望行使您的相关权利，请通过以下方式联系我们：\n\n运营主体：合肥市蜀山区新骅邦百货商行\n联系方式：请通过小程序内的反馈功能与我们联系\n\n我们将在15个工作日内回复您的请求。</text>
+    </view>
+  </view>
+</view>

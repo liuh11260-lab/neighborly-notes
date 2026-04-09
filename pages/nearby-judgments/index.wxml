@@ -1,0 +1,68 @@
+<view class="container">
+  <!-- View Toggle Header -->
+  <view class="view-header">
+    <view class="header-content">
+      <text class="title">环境信号监测</text>
+      <text class="subtitle">附近有 {{items.length}} 条活跃刻痕</text>
+    </view>
+    <view class="toggle-btn" bindtap="switchViewMode">
+      <text>{{viewMode === 'list' ? '切换地图' : '切换列表'}}</text>
+    </view>
+  </view>
+
+  <!-- Map Mode -->
+  <view class="map-view {{viewMode === 'map' ? 'active' : ''}}">
+    <map 
+      id="nearbyMap"
+      class="nearby-map"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      markers="{{markers}}"
+      bindmarkertap="onMarkerTap"
+      show-location
+    ></map>
+  </view>
+
+  <!-- List Mode -->
+  <scroll-view class="list-view {{viewMode === 'list' ? 'active' : ''}}" scroll-y>
+    <view class="list-container">
+      <block wx:if="{{items && items.length > 0}}">
+        <view 
+          wx:for="{{items}}" 
+          wx:key="id" 
+          class="imprint-card"
+          bindtap="viewDetail"
+          data-id="{{item.anchorId}}"
+        >
+          <view class="imprint-header">
+            <view class="user-block">
+              <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+              <view class="user-info">
+                <text class="user-name">{{item.userName}}</text>
+                <text class="imprint-meta">{{item.timeText}} · {{item.distance}}</text>
+              </view>
+            </view>
+            <view class="judgment-badge {{item.judgment}}">
+              {{item.judgment === 'recommend' ? '推荐' : (item.judgment === 'avoid' ? '避雷' : '观测')}}
+            </view>
+          </view>
+          
+          <view class="imprint-body">
+            <text class="location-name">@ {{item.location.name}}</text>
+            <text class="comment-text">{{item.comment || '留下了刻痕，但没有留下言语'}}</text>
+          </view>
+          
+          <view class="imprint-footer">
+            <text class="link-label">查看地点详情</text>
+            <text class="arrow">→</text>
+          </view>
+        </view>
+      </block>
+      <view wx:else class="empty-state">
+        <text class="empty-icon">📡</text>
+        <text class="empty-text">附近暂无其他环境信号</text>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>

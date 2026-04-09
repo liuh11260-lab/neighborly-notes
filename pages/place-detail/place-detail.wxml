@@ -1,0 +1,85 @@
+<view class="container" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
+  <!-- Browsing Navigation (Flow Control) -->
+  <view class="browsing-header">
+    <view class="nav-arrow {{canPrev ? '' : 'disabled'}}" catchtap="handlePrev">
+      <text class="arrow-icon">❮</text>
+    </view>
+    <view class="nav-info">
+      <text class="nav-title">地点详情</text>
+    </view>
+    <view class="nav-arrow {{canNext ? '' : 'disabled'}}" catchtap="handleNext">
+      <text class="arrow-icon">❯</text>
+    </view>
+  </view>
+
+  <!-- V1 Book Page: Focused Content -->
+  <view class="book-content">
+    <!-- Place Identity -->
+    <view class="place-header">
+      <view class="icon-badges">
+          <view class="category-icon">{{layerIcon || '🏠'}}</view>
+          <view class="layer-badge">{{layer || 'Life'}}</view>
+      </view>
+      
+      <text class="place-name">{{place.displayName || place.title || place.name}}</text>
+      
+      <!-- Compact Info Row -->
+      <view class="place-info-row">
+         <view class="info-text-group">
+             <text class="place-distance" wx:if="{{place.distance}}">距{{place.distance}}m</text>
+             <text class="divider" wx:if="{{place.distance}}"> | </text>
+             <text class="place-address">{{place.address}}</text>
+         </view>
+         <view class="mini-map-btn" bindtap="openNav">
+            <text>🗺 导航</text>
+         </view>
+      </view>
+    </view>
+
+    <!-- Placeholder / State Display -->
+    <view class="book-placeholder">
+       <block wx:if="{{!hasJudged}}">
+           <text class="placeholder-text">👉 点按钮 = 贡献一条邻里笔记</text>
+           <text class="placeholder-sub">这里还没有评价，你的判断会成为第一条</text>
+       </block>
+       <block wx:else>
+           <text class="placeholder-text">📝 你的邻里笔记</text>
+           <text class="placeholder-sub">你标记了：{{judgmentLabel}}</text>
+       </block>
+    </view>
+  </view>
+
+  <!-- Bottom Actions (Fixed) -->
+  <view class="action-bar safe-area-bottom">
+    
+    <!-- Edit Mode or New -->
+    <block wx:if="{{!hasJudged || isEditing}}">
+      <!-- Row 1: Judgment -->
+      <view class="action-row main-actions">
+        <button class="btn-judgment positive {{currentJudgment === 'suitable' ? 'checked' : ''}}" bindtap="handleSuitable">
+          <text>👍 适合我</text>
+        </button>
+        
+        <button class="btn-judgment negative {{currentJudgment === 'unsuitable' ? 'checked' : ''}}" bindtap="handleUnsuitable">
+          <text>👎 不适合我</text>
+        </button>
+      </view>
+
+      <!-- Row 2: Skip -->
+      <view class="action-row sub-actions">
+         <button class="btn-judgment neutral" bindtap="handleSkip">
+           <text>😐 跳过</text>
+         </button>
+      </view>
+    </block>
+    
+    <!-- View Mode (Already Judged) -->
+    <block wx:else>
+       <view class="action-row sub-actions">
+         <button class="btn-judgment neutral" bindtap="handleModify" style="border: 2rpx solid #000; color: #000;">
+           <text>修改判断</text>
+         </button>
+       </view>
+    </block>
+  </view>
+</view>

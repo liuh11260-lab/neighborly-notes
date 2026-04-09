@@ -1,0 +1,70 @@
+<view class="admin-page">
+  <view class="admin-header">
+    <text class="header-title">系统管理后台</text>
+    <text class="header-status">系统状态：运行中</text>
+  </view>
+
+  <!-- Stats Grid -->
+  <view class="stats-grid">
+    <view class="stats-card" bindtap="goToLocations">
+      <text class="stats-label">地点总数</text>
+      <text class="stats-value">{{stats.locations}}</text>
+    </view>
+    <view class="stats-card" bindtap="goToReviews">
+      <text class="stats-label">记录总数</text>
+      <text class="stats-value">{{stats.reviews}}</text>
+    </view>
+    <view class="stats-card" bindtap="goToThemes">
+      <text class="stats-label">主题总数</text>
+      <text class="stats-value">{{stats.themes}}</text>
+    </view>
+    <view class="stats-card" bindtap="goToUsers">
+      <text class="stats-label">用户总数 (活跃/总数)</text>
+      <text class="stats-value">{{stats.onlineUsers || 0}} / {{stats.users}}</text>
+    </view>
+  </view>
+
+  <!-- Menu List -->
+  <view class="admin-menu">
+    <view class="menu-item" bindtap="goToThemes">
+      <view class="menu-info">
+        <text class="menu-title">主题管理</text>
+        <text class="menu-desc">管理系统主题、审核公共主题</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToLocations">
+      <view class="menu-info">
+        <text class="menu-title">地点管理</text>
+        <text class="menu-desc">处理脏数据、冻结地点、空数据清理</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToUsers">
+      <view class="menu-info">
+        <text class="menu-title">用户管理</text>
+        <text class="menu-desc">查看活跃用户、系统权限列表</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToReviews">
+      <view class="menu-info">
+        <text class="menu-title">评价管理</text>
+        <text class="menu-desc">全局评价列表、脏话过滤、违规删除</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToViolations">
+      <view class="menu-info">
+        <text class="menu-title">违规记录</text>
+        <text class="menu-desc">内容安全检测记录、违规内容管理</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <view class="admin-footer">
+    <text>数据最后更新：{{stats.lastUpdatedText}}</text>
+    <button class="logout-btn" bindtap="onLogout">退回主页</button>
+  </view>
+</view>

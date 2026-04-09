@@ -1,0 +1,78 @@
+<view class="page">
+  <!-- Theme Header (System View) -->
+  <view class="theme-header">
+    <text class="theme-title">{{theme.title}}</text>
+    <text class="theme-desc">{{theme.description}}</text>
+
+    <view class="theme-stats">
+      <text>覆盖 {{stats.locationCount}} 个地点</text>
+      <text class="divider">·</text>
+      <text>{{stats.recordCount}} 次判断</text>
+      <text class="divider">·</text>
+      <text>{{stats.lastUpdatedAtText}}更新</text>
+    </view>
+  </view>
+
+  <!-- View Toggle Tabs -->
+  <view class="view-tabs">
+    <view class="tab {{viewMode === 'list' ? 'active' : ''}}" bindtap="switchViewMode" data-mode="list">
+      <text>列表</text>
+    </view>
+    <view class="tab {{viewMode === 'map' ? 'active' : ''}}" bindtap="switchViewMode" data-mode="map">
+      <text>地图</text>
+    </view>
+  </view>
+
+  <view wx:if="{{viewMode === 'map'}}" class="map-container">
+    <map
+      id="themeMap"
+      class="theme-map"
+      latitude="{{mapCenter.latitude}}"
+      longitude="{{mapCenter.longitude}}"
+      markers="{{markers}}"
+      show-location
+      bindmarkertap="onMarkerTap"
+    >
+      <view class="map-controls">
+        <view class="location-btn" bindtap="onLocateMe">
+          <image class="loc-icon" src="../../../images/icons/location_pin.svg" />
+        </view>
+      </view>
+    </map>
+  </view>
+
+  <!-- List View -->
+  <!-- Location List -->
+  <view wx:if="{{viewMode === 'list'}}" class="location-list">
+    <view 
+      wx:for="{{locations}}" 
+      wx:key="anchorId"
+      class="location-card" 
+      bindtap="onLocationTap" 
+      data-id="{{item.anchorId}}"
+    >
+      <view class="location-main">
+        <text class="location-name">{{item.name}}</text>
+        <view class="judgment-row">
+          <text class="judgment-tag {{item.judgmentType}}">{{item.judgmentType === 'recommend' ? '推荐' : (item.judgmentType === 'avoid' ? '避雷' : '观测')}}</text>
+          <text class="judgment-desc">{{item.recordCount}} 次判断</text>
+          <text class="divider">·</text>
+          <text class="time-label">{{item.lastRecordAtText}}</text>
+        </view>
+      </view>
+      
+      <view class="card-separator"></view>
+    </view>
+  </view>
+
+  <!-- Footer Note -->
+  <view class="theme-footer">
+    <text class="footer-main">这是一个基于个人判断整理的视图</text>
+    <text class="footer-sub">不代表客观事实，也不保证适合你</text>
+  </view>
+
+  <!-- Floating Share Button -->
+  <button class="float-share-btn" open-type="share">
+    <text>分享我的判断视图</text>
+  </button>
+</view>

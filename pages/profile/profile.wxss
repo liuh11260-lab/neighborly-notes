@@ -1,0 +1,467 @@
+.container {
+  height: 100vh;
+  background-color: #F7F7F7;
+}
+
+.profile-scroll {
+  height: 100%;
+}
+
+.user-section {
+  background: #fff;
+  padding: 60rpx 40rpx;
+  display: flex;
+  align-items: center;
+  gap: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.avatar-wrapper {
+  position: relative;
+}
+
+.user-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 24rpx;
+  background: #EEE;
+  border: 4rpx solid #fff;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.verified-badge {
+  position: absolute;
+  bottom: -4rpx;
+  right: -4rpx;
+  background: #fff;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.1);
+}
+
+.user-main {
+  flex: 1;
+}
+
+.user-nickname {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.user-id {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.edit-btn {
+  padding: 20rpx;
+  background: #F8F8F8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -10rpx;
+}
+
+.edit-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.login-btn {
+  background: #07C160;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 12rpx;
+  padding: 10rpx 30rpx;
+  display: inline-block;
+}
+
+.stats-section {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-val {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 40rpx;
+  background: #EEE;
+}
+
+.stat-item.active .stat-label {
+  color: #07C160;
+  font-weight: bold;
+}
+
+.stat-item.active .stat-val {
+  color: #07C160;
+}
+
+/* Search Bar */
+.search-container {
+  background: #fff;
+  padding: 0 40rpx 30rpx;
+  margin-bottom: 2rpx;
+}
+
+.search-bar {
+  background: #F8F8F8;
+  height: 72rpx;
+  border-radius: 36rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  gap: 16rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.activity-section {
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  padding: 30rpx 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  padding: 30rpx 40rpx 10rpx;
+}
+
+.more-link {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.more-link text {
+  font-size: 24rpx;
+  color: #576B95;
+}
+
+.review-list {
+  padding: 0 40rpx;
+}
+
+.review-item {
+  display: flex;
+  gap: 20rpx;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-image-wrapper {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7F7F7;
+}
+
+.review-emoji {
+  font-size: 80rpx;
+}
+
+.review-body {
+  flex: 1;
+  padding-left: 30rpx;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.review-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.delete-btn {
+  padding: 10rpx;
+  margin-right: -10rpx;
+}
+
+.location-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.time-label {
+  font-size: 22rpx;
+  color: #BBB;
+}
+
+.review-comment {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 16rpx;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recommend-badge {
+  display: inline-flex;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+.recommend-badge.praise {
+  background: rgba(7, 193, 96, 0.08);
+  color: #07C160;
+}
+
+.recommend-badge.complaint {
+  background: rgba(255, 77, 79, 0.08);
+  color: #ff4d4f;
+}
+
+.tag-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  color: #999;
+  background: #F2F2F2;
+  padding: 2rpx 10rpx;
+  border-radius: 4rpx;
+}
+
+/* Place Grid & Card Styles Refined */
+.review-grid {
+  padding: 0 40rpx 40rpx;
+}
+
+.place-card {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 30rpx;
+  background: #FBFBFB;
+  border-radius: 20rpx;
+  margin-bottom: 24rpx;
+  border: 1rpx solid #F0F0F0;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);
+  position: relative;
+}
+
+.place-icon {
+  width: 96rpx;
+  height: 96rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.place-info {
+  flex: 1;
+}
+
+.place-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.place-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.place-meta {
+  font-size: 20rpx;
+  color: #BBB;
+}
+
+.type-icon-mini {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.place-desc {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+}
+
+.place-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.judgment-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.judgment-badge.recommend {
+  background: rgba(7, 193, 96, 0.08);
+  color: #07C160;
+}
+
+.judgment-badge.avoid {
+  background: rgba(255, 77, 79, 0.08);
+  color: #ff4d4f;
+}
+
+.judgment-badge.neutral {
+  background: rgba(136, 136, 136, 0.08);
+  color: #888;
+}
+
+.recommend-tag {
+  font-size: 18rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 6rpx;
+}
+
+.recommend-tag.praise {
+  background: rgba(7, 193, 96, 0.08);
+  color: #07C160;
+}
+
+.recommend-tag.complaint {
+  background: rgba(255, 77, 79, 0.08);
+  color: #ff4d4f;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 10rpx;
+}
+
+.empty-tip {
+  padding: 80rpx 0;
+  text-align: center;
+  font-size: 24rpx;
+  color: #BBB;
+}
+
+.menu-section {
+  background: #fff;
+  margin-bottom: 60rpx;
+}
+
+.menu-item, .menu-item-btn {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 40rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+  background: #fff;
+  border-radius: 0;
+  line-height: normal;
+  text-align: left;
+  width: 100% !important;
+  margin: 0;
+  font-weight: normal;
+}
+
+.menu-item:active, .menu-item-btn:active {
+  background: #FAFAFA;
+}
+
+.menu-item-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-icon {
+  font-size: 32rpx;
+  width: 60rpx;
+}
+
+.menu-label {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  color: #CCC;
+  font-size: 24rpx;
+}

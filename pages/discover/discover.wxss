@@ -1,0 +1,261 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #F7F7F7;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.main-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Central Narrative Prompt */
+.central-narrative {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.9); /* Reduced transparency as requested */
+  backdrop-filter: blur(10rpx);
+}
+
+.main-prompt {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.65);
+  display: block;
+  letter-spacing: 1.5px;
+}
+
+.sub-prompt {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.45);
+  display: block;
+  margin-top: 12rpx;
+}
+
+.hint-prompt {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.25);
+  display: block;
+  margin-top: 40rpx;
+}
+
+/* App Header */
+.app-header {
+  position: absolute;
+  left: 30rpx;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #000;
+  letter-spacing: -1rpx;
+}
+
+.app-subtitle {
+  font-size: 20rpx;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  margin-top: 4rpx;
+}
+
+/* L2: Signal Tip - Top Right as requested */
+.signal-tip {
+  position: absolute;
+  top: 180rpx; /* Fallback */
+  left: 30rpx;
+  right: 30rpx;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end; /* Right align */
+}
+
+.signal-content {
+  background: rgba(0, 0, 0, 0.75); /* Darker for premium contrast */
+  backdrop-filter: blur(20px);
+  padding: 12rpx 24rpx;
+  border-radius: 100rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.signal-text {
+  font-size: 24rpx;
+  color: #FFF;
+  font-weight: 600;
+}
+
+.signal-subtext {
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.signal-arrow {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 28rpx;
+}
+
+/* L3: Top Nav Layer */
+.top-nav-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start; /* Left align */
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.radius-switcher {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8rpx;
+  border-radius: 100rpx;
+  display: flex;
+  pointer-events: auto;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+}
+
+.radius-item {
+  padding: 10rpx 36rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+  border-radius: 100rpx;
+  transition: all 0.3s cubic-bezier(0.2, 1, 0.2, 1);
+  opacity: 0.4;
+}
+
+.radius-item.active {
+  background: #1A1A1A;
+  color: #FFF;
+  opacity: 1;
+}
+
+/* L3: Bottom Left Actions */
+.bottom-left-actions {
+  position: absolute;
+  bottom: 280rpx;
+  left: 30rpx;
+  z-index: 100;
+}
+
+.location-point {
+  width: 90rpx;
+  height: 90rpx;
+  background: #FFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+}
+
+.nav-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+/* Bottom Action Layer Group */
+.bottom-action-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 30rpx calc(40rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  z-index: 100;
+}
+
+/* Top Right Info (Presence Strip) - Compact Chip */
+.presence-strip {
+  position: absolute;
+  right: 30rpx;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.presence-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10rpx 20rpx;
+  border-radius: 100rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.presence-text {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.presence-arrow {
+  color: #AAA;
+  font-size: 24rpx;
+}
+
+/* L3 Main Button - Sticky to bottom with bar clearance */
+.add-imprint-btn {
+  background: #1A1A1A;
+  color: #FFF;
+  height: 112rpx;
+  width: 100%;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12rpx 32rpx rgba(0,0,0,0.2);
+  margin-bottom: 20rpx; /* Extra breathing room */
+}
+
+.add-imprint-btn text {
+  font-size: 34rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+/* Identity Header */
+.identity-header {
+  position: absolute;
+  top: 200rpx;
+  left: 30rpx;
+  right: 30rpx;
+  background: #FFF;
+  padding: 24rpx 32rpx;
+  border-radius: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8rpx 32rpx rgba(0,0,0,0.08);
+  z-index: 100;
+}

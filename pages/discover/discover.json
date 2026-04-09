@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "发现邻里",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "login-popup": "/components/login-popup/login-popup"
+  }
+}

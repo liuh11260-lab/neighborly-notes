@@ -1,0 +1,120 @@
+<view class="container">
+  <!-- 登录弹窗 -->
+  <login-popup 
+    wx:if="{{showLoginPopup}}" 
+    bind:close="onCloseLoginPopup" 
+    bind:success="onLoginSuccess" 
+  />
+
+  <!-- 定位中 -->
+  <view class="loading-state" wx:if="{{locating}}">
+    <view class="loading-icon">📡</view>
+    <text class="loading-text">正在捕捉空间信号...</text>
+  </view>
+
+  <!-- 主内容 -->
+  <view class="main-content" wx:if="{{!locating && !showLoginPopup}}">
+    <view class="panel-header">
+      <text class="panel-title">{{mode === 'update' ? '更新判断' : '留下你的判断'}}</text>
+      <text class="panel-subtitle">{{mode === 'update' ? '你可以调整你的立场' : '这是你对这个地方的立场'}}</text>
+    </view>
+    
+    <!-- 地点卡片 -->
+    <view class="location-card" bindtap="chooseLocation">
+      <view class="location-icon">📍</view>
+      <view class="location-info">
+        <text class="location-name">{{location.name || '在地图上标记此地...'}}</text>
+        <text class="location-address" wx:if="{{location.address}}">{{location.address}}</text>
+      </view>
+      <view class="location-action">
+        <text class="change-btn">更换</text>
+      </view>
+    </view>
+
+    <!-- 判断选择 -->
+    <view class="judgment-section">
+      <view class="judgment-options">
+        <view 
+          class="judgment-btn recommend {{judgment === 'recommend' ? 'active' : ''}}"
+          bindtap="selectJudgment" 
+          data-type="recommend"
+        >
+          <text class="judgment-label">推荐</text>
+          <text class="judgment-sub">我愿意推荐这里</text>
+          <text class="judgment-hint">我认可别人把时间花在这里</text>
+        </view>
+        <view 
+          class="judgment-btn avoid {{judgment === 'avoid' ? 'active' : ''}}"
+          bindtap="selectJudgment" 
+          data-type="avoid"
+        >
+          <text class="judgment-label">不推荐</text>
+          <text class="judgment-sub">我不推荐这里</text>
+          <text class="judgment-hint">我不建议别人把时间花在这里</text>
+        </view>
+        <view 
+          class="judgment-btn neutral {{judgment === 'neutral' ? 'active' : ''}}"
+          bindtap="selectJudgment" 
+          data-type="neutral"
+        >
+          <text class="judgment-label">仅记录</text>
+          <text class="judgment-sub">我来过，但不做判断</text>
+          <text class="judgment-hint">该操作不会计入邻里判断</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空间尺度选择 -->
+    <view class="spatial-section">
+      <view class="section-label">认知尺度</view>
+      <view class="level-switcher">
+        <view 
+          class="level-item {{spatialLevel === 'spot' ? 'active' : ''}}" 
+          bindtap="selectLevel" data-level="spot"
+        >
+          <image class="level-icon-svg" src="../../images/icons/marker_spot_vibrant.svg" />
+          <text class="level-text">精确点</text>
+        </view>
+        <view 
+          class="level-item {{spatialLevel === 'place' ? 'active' : ''}}" 
+          bindtap="selectLevel" data-level="place"
+        >
+          <image class="level-icon-svg" src="../../images/icons/marker_place_vibrant.svg" />
+          <text class="level-text">场所</text>
+        </view>
+        <view 
+          class="level-item {{spatialLevel === 'area' ? 'active' : ''}}" 
+          bindtap="selectLevel" data-level="area"
+        >
+          <image class="level-icon-svg" src="../../images/icons/marker_area_vibrant.svg" />
+          <text class="level-text">区域/街区</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 一句话 (可选) -->
+    <view class="comment-section">
+      <textarea 
+        class="comment-input"
+        placeholder="理由（可选）"
+        maxlength="100"
+        bindinput="onCommentInput"
+        value="{{comment}}"
+      />
+    </view>
+    <view class="footer-hint">判断一旦留下，代表你的立场</view>
+  </view>
+
+
+
+  <!-- 底部按钮 -->
+  <view class="footer" wx:if="{{!locating && !showLoginPopup}}">
+    <button 
+      class="submit-btn {{judgment ? 'active' : 'disabled'}}" 
+      bindtap="submitImprint"
+      disabled="{{submitting || !judgment}}"
+    >
+      {{submitting ? (mode === 'update' ? '更新中...' : '记录立场中...') : (mode === 'update' ? '更新我的判断' : '确认我的立场')}}
+    </button>
+  </view>
+</view>

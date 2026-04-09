@@ -1,0 +1,78 @@
+<view class="admin-page">
+  <view class="admin-header">
+    <text class="header-title">评价管理</text>
+    <text class="header-status">全局邻里评价流水记录</text>
+  </view>
+
+  <view class="stats-overview">
+    <view class="ratio-header">
+      <text class="ratio-label">全站推荐率: {{recommendRatio}}%</text>
+      <text class="ratio-details">👍 {{recommendCount}} / ❌ {{avoidCount}}</text>
+    </view>
+    <view class="ratio-bar">
+      <view class="ratio-progress praise" style="width: {{recommendRatio}}%"></view>
+      <view class="ratio-progress complaint" style="width: {{100 - recommendRatio}}%"></view>
+    </view>
+  </view>
+
+  <view class="search-section">
+    <view class="search-bar">
+      <icon type="search" size="14" color="#999" />
+      <input 
+        class="search-input" 
+        placeholder="搜索地点、内容或用户名" 
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+    <view class="filter-row-container">
+      <view class="filter-row">
+        <view 
+          wx:for="{{['全部', '推荐', '避雷']}}" wx:key="*this"
+          class="filter-tag {{recommendFilter === item ? 'active' : ''}}"
+          bindtap="onRecommendFilterChange"
+          data-val="{{item}}"
+        >{{item}}</view>
+      </view>
+      <view class="time-filter-section">
+        <picker mode="date" value="{{dateFilter === '全部' ? '' : dateFilter}}" bindchange="onDateChange">
+          <view class="time-picker-btn {{dateFilter !== '全部' ? 'active' : ''}}">
+            <text>{{dateFilter === '全部' ? '选择时间' : dateFilter}}</text>
+            <icon type="waiting" size="12" color="{{dateFilter !== '全部' ? '#1976D2' : '#999'}}" />
+          </view>
+        </picker>
+        <view wx:if="{{dateFilter !== '全部'}}" class="clear-time-btn" bindtap="clearDateFilter">×</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="data-list">
+    <view wx:for="{{filteredReviews}}" wx:key="_id" class="data-card {{item.status === 'frozen' ? 'frozen' : ''}}">
+      <view class="review-header" bindtap="jumpToFrontend" data-id="{{item.anchorId || item.locationId}}">
+        <image class="spatial-icon-mini" src="{{item.spatialIcon}}" />
+        <text class="review-poi">{{item.location.name || item.name || '未知地点'}}</text>
+        <view class="review-judgment {{item.judgment}}">{{item.judgment === 'recommend' ? '推荐' : '避雷'}}</view>
+      </view>
+      <text class="review-content" bindtap="jumpToFrontend" data-id="{{item.anchorId || item.locationId}}">{{item.comment || '无文字内容'}}</text>
+      <view class="review-footer">
+        <text class="review-user">用户: {{item.userName || '匿名'}}</text>
+        <text class="review-time">{{item.createTimeText}}</text>
+      </view>
+      <view class="card-actions">
+        <view class="jump-hint" bindtap="jumpToFrontend" data-id="{{item.anchorId || item.locationId}}">查看详情 ></view>
+        <button 
+          class="freeze-btn {{item.status === 'frozen' ? 'active' : ''}}" 
+          catchtap="toggleFreeze" 
+          data-id="{{item._id}}" 
+          data-status="{{item.status}}"
+        >
+          {{item.status === 'frozen' ? '解除冻结' : '冻结显示'}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{filteredReviews.length === 0}}" class="empty-state">
+    <text>暂无评价记录</text>
+  </view>
+</view>

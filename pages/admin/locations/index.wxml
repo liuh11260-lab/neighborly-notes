@@ -1,0 +1,101 @@
+<view class="admin-page">
+  <view class="admin-header">
+    <text class="header-title">地点管理</text>
+    <text class="header-status">管理系统中的所有地理位置实体</text>
+  </view>
+
+  <view class="search-section">
+    <view class="search-bar">
+      <icon type="search" size="14" color="#999" />
+      <input 
+        class="search-input" 
+        placeholder="搜索地点名称、地址或ID" 
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+    <view class="filter-section-content">
+      <scroll-view class="category-scroll" scroll-x>
+        <view class="filter-row">
+          <view 
+            wx:for="{{categories}}" wx:key="*this"
+            class="filter-tag {{currentCategory === item ? 'active' : ''}}"
+            bindtap="onCategoryChange"
+            data-val="{{item}}"
+          >{{item}}</view>
+        </view>
+      </scroll-view>
+
+      <view class="filter-row-container">
+        <view class="filter-row status-filter-row">
+          <view 
+            wx:for="{{['全部', '正常', '已冻结']}}" wx:key="*this"
+            class="filter-tag {{currentStatusFilter === item ? 'active' : ''}}"
+            bindtap="onStatusFilterChange"
+            data-val="{{item}}"
+          >{{item}}</view>
+        </view>
+
+        <view class="time-filter-section">
+          <picker mode="date" value="{{dateFilter === '全部' ? '' : dateFilter}}" bindchange="onDateChange">
+            <view class="time-picker-btn {{dateFilter !== '全部' ? 'active' : ''}}">
+              <text>{{dateFilter === '全部' ? '选择时间' : dateFilter}}</text>
+              <icon type="waiting" size="12" color="{{dateFilter !== '全部' ? '#1976D2' : '#999'}}" />
+            </view>
+          </picker>
+          <view wx:if="{{dateFilter !== '全部'}}" class="clear-time-btn" bindtap="clearDateFilter">×</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="location-list">
+    <view 
+      wx:for="{{filteredLocations}}" 
+      wx:key="_id" 
+      class="location-card"
+    >
+      <view class="location-main">
+        <view class="location-header">
+           <image class="spatial-icon" src="{{item.spatialIcon}}" />
+           <text class="location-name">{{item.name}}</text>
+          <view class="location-status">
+            <text class="status-badge {{item.status}}">
+              {{item.status === 'frozen' ? '已冻结' : 'ACTIVE'}}
+            </text>
+          </view>
+        </view>
+        
+        <text class="location-address">{{item.address || '无详细地址'}}</text>
+        <text class="location-id">ID: {{item._id}}</text>
+        
+        <view class="location-footer" bindtap="jumpToFrontend" data-id="{{item._id}}">
+          <text class="location-time">创建时间: {{item.createTimeText}}</text>
+          <text class="jump-label">进入地点详情 ></text>
+        </view>
+      </view>
+
+      <view class="card-actions">
+        <button 
+          class="action-btn small {{item.status === 'frozen' ? 'active' : 'danger'}}" 
+          bindtap="onStatusToggle" 
+          data-id="{{item._id}}" 
+          data-status="{{item.status}}"
+        >
+          {{item.status === 'frozen' ? '解除冻结' : '冻结地点'}}
+        </button>
+        <button 
+          class="action-btn small secondary" 
+          bindtap="recalculate" 
+          data-id="{{item._id}}"
+        >
+          重算摘要
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{filteredLocations.length === 0}}" class="empty-state">
+    <text>暂无地点数据</text>
+  </view>
+</view>

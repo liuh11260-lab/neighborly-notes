@@ -1,0 +1,89 @@
+<view class="container">
+  <block wx:if="{{ready}}">
+    <!-- L0: System Layer & L1: Imprint Layer (Map Markers) -->
+    <view class="map-container">
+      <map 
+        id="mainMap"
+        class="main-map"
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        scale="{{mapScale}}"
+        markers="{{markers}}"
+        ground-overlays="{{groundOverlays}}"
+        bindmarkertap="onMarkerTap"
+        bindtap="onMapTap"
+        bindregionchange="onRegionChange"
+        show-location="{{true}}"
+        layer-style="1" 
+      ></map>
+
+      <!-- L1: Page Header -->
+      <view class="app-header" style="top: {{signalTipTop}}px;">
+        <text class="app-title">邻里笔记</text>
+        <text class="app-subtitle">看见判断，决定在你</text>
+      </view>
+
+      <!-- L1: Narrative Prompt (Center) -->
+      <view wx:if="{{markers.length === 0 && viewMode === 'explore'}}" class="central-narrative">
+        <text class="main-prompt">这里不是推荐榜</text>
+        <text class="sub-prompt">是大家对走过地方留下的判断</text>
+        <text class="hint-prompt">你的判断，永远单独算一票</text>
+      </view>
+
+      <!-- Signal Tip (Neighbors' Judgments) -->
+      <view wx:if="{{nearbyUserCount > 0 && viewMode === 'explore'}}" class="signal-tip {{showSignalTip ? 'show' : ''}}" style="top: {{signalTipTop}}px;" bindtap="goToNearbyJudgments">
+        <view class="signal-content">
+          <text class="signal-text">附近有 {{nearbyUserCount}} 位邻居在一些地方留下了判断</text>
+          <text class="signal-arrow">→</text>
+        </view>
+      </view>
+
+      <!-- Top Right Info (Presence Strip) -->
+      <view class="presence-strip" bindtap="viewMyImprints" wx:if="{{viewMode === 'explore'}}" style="top: {{signalTipTop + 50}}px;">
+        <view class="presence-content">
+          <text class="presence-text">{{presenceText}}</text>
+          <text class="presence-arrow">→</text>
+        </view>
+      </view>
+      <!-- L3: Top Light Navigation (Dynamic Position) -->
+      <view class="top-nav-layer" style="top: {{headerTop}}px; height: {{headerHeight}}px; left: 20px; right: auto;">
+        <view class="radius-switcher">
+          <view 
+            wx:for="{{[{key: 'nearby', label: '附近'}, {key: 'block', label: '街区'}, {key: 'district', label: '城区'}, {key: 'global', label: '全局'}]}}" 
+            wx:key="key"
+            class="radius-item {{currentRadiusKey === item.key ? 'active' : ''}}"
+            bindtap="switchRadius"
+            data-key="{{item.key}}"
+          >{{item.label}}</view>
+        </view>
+      </view>
+
+      <!-- L3: Secondary Navigation (Bottom Left) -->
+      <view class="bottom-left-actions">
+        <view class="location-point" bindtap="moveToLocation">
+          <image src="../../images/icons/my_location.svg" class="nav-icon" />
+        </view>
+      </view>
+
+      <!-- Share Mode Header (Identity) -->
+      <view class="identity-header" wx:if="{{viewMode === 'identity'}}">
+        <text class="identity-title">邻里的刻痕地图</text>
+        <view class="exit-identity" bindtap="exitIdentityMode">查看我的</view>
+      </view>
+
+      <!-- Bottom Action Group (Sticky for Thumb) -->
+      <view class="bottom-action-layer">
+        <view class="add-imprint-btn" bindtap="goToImprintPanel">
+          <text>{{mainActionText}}</text>
+        </view>
+      </view>
+
+    </view>
+  </block>
+
+  <login-popup 
+    show="{{showLoginPopup}}" 
+    bind:close="onCloseLoginPopup"
+    bind:success="onLoginSuccess"
+  />
+</view>

@@ -1,0 +1,57 @@
+<view class="admin-page">
+  <view class="admin-header">
+    <text class="header-title">用户管理</text>
+    <text class="header-status">系统注册用户及权限状态</text>
+  </view>
+
+  <view class="search-section">
+    <view class="search-bar">
+      <icon type="search" size="14" color="#999" />
+      <input 
+        class="search-input" 
+        placeholder="搜索昵称或ID" 
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+    <view class="filter-row">
+      <view 
+        class="filter-tag {{onlineOnly ? 'active' : ''}}" 
+        bindtap="toggleOnlineFilter"
+      >
+        仅看在线
+      </view>
+    </view>
+  </view>
+
+  <view class="data-list">
+    <view wx:for="{{filteredUsers}}" wx:key="_id" class="data-card {{item.status === 'frozen' ? 'frozen' : ''}}">
+      <view class="online-indicator {{item.isOnline ? 'online' : ''}}"></view>
+      <view class="user-row">
+        <image class="user-avatar" src="{{item.avatarUrl || '../../images/icons/default_avatar.svg'}}" />
+        <view class="user-main">
+          <text class="user-nickname">{{item.nickName || '匿名用户'}}</text>
+          <text class="user-id">ID: {{item._id}}</text>
+        </view>
+        <view class="user-badge" wx:if="{{item.isAdmin}}">ADMIN</view>
+        <view class="user-badge frozen" wx:if="{{item.status === 'frozen'}}">FROZEN</view>
+      </view>
+      <view class="user-meta">
+        <text>最后活跃: {{item.lastLoginTimeText}}</text>
+        <button 
+          class="freeze-btn {{item.status === 'frozen' ? 'active' : ''}}" 
+          catchtap="toggleFreeze" 
+          data-id="{{item._id}}" 
+          data-status="{{item.status}}"
+          wx:if="{{!item.isAdmin}}"
+        >
+          {{item.status === 'frozen' ? '解除冻结' : '冻结用户'}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{filteredUsers.length === 0}}" class="empty-state">
+    <text>暂无用户记录</text>
+  </view>
+</view>

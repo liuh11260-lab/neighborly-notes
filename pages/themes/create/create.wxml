@@ -1,0 +1,67 @@
+<view class="container">
+  <view class="form-section">
+    <view class="input-group">
+      <text class="label">主题名称</text>
+      <input 
+        class="input" 
+        placeholder="给你的整理起个名字" 
+        maxlength="20" 
+        bindinput="onTitleInput"
+      />
+    </view>
+    <view class="input-group">
+      <text class="label">说明 (可选)</text>
+      <textarea 
+        class="textarea" 
+        placeholder="简单说两句（30字以内）" 
+        maxlength="30" 
+        bindinput="onDescInput"
+      />
+      <text class="char-count">{{desc.length}}/30</text>
+    </view>
+    
+
+  </view>
+
+  <view class="location-section">
+    <view class="section-header">
+      <text class="label">选择地点 ({{selectedCount}})</text>
+      <text class="helper-text">从你记录过的地点中选择</text>
+    </view>
+    
+    <scroll-view class="location-list" scroll-y>
+      <view 
+        wx:for="{{availableLocations}}" 
+        wx:key="id" 
+        class="location-item {{item.selected ? 'selected' : ''}}"
+        bindtap="toggleLocation"
+        data-id="{{item.id}}"
+      >
+        <view class="loc-checkbox">
+          <icon wx:if="{{item.selected}}" type="success_no_circle" size="16" color="#fff" />
+        </view>
+        <view class="loc-content">
+          <image class="loc-icon" src="{{item.spatialIcon}}" />
+          <view class="loc-info">
+            <text class="loc-name">{{item.name}}</text>
+            <text class="loc-address">{{item.address}}</text>
+            <text wx:if="{{item.comment}}" class="loc-comment">{{item.comment}}</text>
+          </view>
+        </view>
+        <view class="loc-detail-btn" catchtap="goToDetail" data-id="{{item.id}}">
+          <text class="detail-icon">ⓘ</text>
+        </view>
+      </view>
+      
+      <view wx:if="{{availableLocations.length === 0}}" class="empty-locs">
+        <text>你还没有发布过任何笔记，先去记录生活吧</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="footer">
+    <button class="submit-btn {{canSubmit ? 'active' : ''}}" bindtap="submitTheme" loading="{{submitting}}">
+      确认创建
+    </button>
+  </view>
+</view>
